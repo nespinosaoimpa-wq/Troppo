@@ -74,45 +74,76 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Location Interactive List
     const locationItems = document.querySelectorAll('.location-item');
-    const mapMarker = document.getElementById('map-marker');
-    const mapPointsContainer = document.getElementById('map-points-container');
+    window.mapMarkers = [];
 
-    // Render static dots for all locations
-    if (mapPointsContainer) {
-        locationItems.forEach(item => {
-            const x = item.dataset.x;
-            const y = item.dataset.y;
-            const point = document.createElement('div');
-            point.className = 'absolute w-2 h-2 bg-primary/40 rounded-full -translate-x-1/2 -translate-y-1/2 hover:scale-150 transition-transform';
-            point.style.left = `${x}%`;
-            point.style.top = `${y}%`;
-            mapPointsContainer.appendChild(point);
+    // Google Maps Initialization
+    window.initMap = function () {
+        const defaultCenter = { lat: -31.6373087, lng: -60.6986888 }; // Troppo Francia
+
+        window.map = new google.maps.Map(document.getElementById("google-map"), {
+            zoom: 13,
+            center: defaultCenter,
+            styles: [
+                { "featureType": "all", "elementType": "all", "stylers": [{ "saturation": -100 }] },
+                { "featureType": "water", "elementType": "all", "stylers": [{ "color": "#1E4B99" }, { "visibility": "on" }] }
+            ],
+            disableDefaultUI: true,
+            zoomControl: true
         });
+
+        const infoWindow = new google.maps.InfoWindow();
+
+        locationItems.forEach((item, index) => {
+            const lat = parseFloat(item.dataset.lat);
+            const lng = parseFloat(item.dataset.lng);
+            const title = item.querySelector('p.font-bold').innerText;
+
+            const marker = new google.maps.Marker({
+                position: { lat, lng },
+                map: window.map,
+                title: title,
+                icon: {
+                    path: google.maps.SymbolPath.CIRCLE,
+                    scale: 8,
+                    fillColor: "#D4AF37",
+                    fillOpacity: 1,
+                    strokeWeight: 2,
+                    strokeColor: "#FFFFFF"
+                }
+            });
+
+            window.mapMarkers.push(marker);
+
+            marker.addListener("click", () => {
+                window.map.panTo(marker.getPosition());
+                window.map.setZoom(16);
+                infoWindow.setContent(`<div class="p-2 pt-0"><b class="text-primary font-display">${title}</b></div>`);
+                infoWindow.open(window.map, marker);
+
+                // Highlight item in list
+                highlightLocationItem(item);
+            });
+        });
+    };
+
+    function highlightLocationItem(item) {
+        locationItems.forEach(i => i.classList.remove('bg-white/10', 'border-white/10'));
+        locationItems.forEach(i => i.classList.add('border-transparent'));
+        item.classList.add('bg-white/10', 'border-white/10');
+        item.classList.remove('border-transparent');
+        item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
-    locationItems.forEach(item => {
+    locationItems.forEach((item, index) => {
         item.addEventListener('click', () => {
-            // Update UI list items
-            locationItems.forEach(i => i.classList.remove('bg-white/10', 'border-white/10'));
-            locationItems.forEach(i => i.classList.add('border-transparent'));
+            highlightLocationItem(item);
 
-            item.classList.add('bg-white/10', 'border-white/10');
-            item.classList.remove('border-transparent');
-
-            // Move Marker
-            const x = item.dataset.x;
-            const y = item.dataset.y;
-
-            if (mapMarker) {
-                mapMarker.style.left = `${x}%`;
-                mapMarker.style.top = `${y}%`;
-
-                // Visual feedback "ping" logic already handled by CSS animation in index.html
-                // plus a manual scale boost
-                mapMarker.classList.add('scale-125');
-                setTimeout(() => {
-                    mapMarker.classList.remove('scale-125');
-                }, 700);
+            // Pan map to marker if active
+            if (window.map && window.mapMarkers[index]) {
+                const marker = window.mapMarkers[index];
+                window.map.panTo(marker.getPosition());
+                window.map.setZoom(16);
+                google.maps.event.trigger(marker, 'click');
             }
         });
     });
