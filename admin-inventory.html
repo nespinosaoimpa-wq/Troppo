@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Inventory - Troppo Admin</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1E4B99",
+                        "secondary": "#0F2A5A",
+                        "accent": "#D4AF37",
+                        "italianGreen": "#008C45",
+                        "italianRed": "#CD212A",
+                        "luxury-bg": "#FBFBFB"
+                    },
+                    fontFamily: {
+                        "display": ["Playfair Display", "serif"],
+                        "sans": ["Inter", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        @layer base {
+            body {
+                @apply font-sans bg-luxury-bg text-slate-800;
+            }
+
+            h1,
+            h2,
+            h3,
+            h4 {
+                @apply font-display tracking-tight;
+            }
+        }
+
+        .sidebar-link {
+            @apply flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 transition-all rounded-none;
+        }
+
+        .sidebar-link.active {
+            @apply text-accent bg-white/10 border-r-2 border-accent;
+        }
+
+        .status-badge {
+            @apply px-3 py-1 rounded-none text-[10px] font-bold uppercase tracking-widest border;
+        }
+
+        .status-instock {
+            @apply bg-italianGreen/10 text-italianGreen border-italianGreen/20;
+        }
+
+        .status-lowstock {
+            @apply bg-amber-50 text-amber-700 border-amber-200;
+        }
+
+        .status-outofstock {
+            @apply bg-italianRed/10 text-italianRed border-italianRed/20;
+        }
+
+        .premium-table thead th {
+            @apply bg-slate-50 text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] px-6 py-4 border-b border-slate-100;
+        }
+
+        .premium-table tbody td {
+            @apply px-6 py-5 border-b border-slate-50 transition-colors;
+        }
+
+        .premium-table tbody tr:hover td {
+            @apply bg-slate-50/50;
+        }
+    </style>
+</head>
+
+<body class="flex min-h-screen">
+    <!-- Sidebar -->
+    <aside class="w-72 bg-secondary text-white flex flex-col sticky top-0 h-screen shadow-2xl z-50">
+        <div class="p-8 border-b border-white/5">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-white flex items-center justify-center p-2">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-primary">
+                        <path d="M47.2426 24L24 47.2426L0.757355 24L24 0.757355L47.2426 24Z" fill="currentColor" />
+                    </svg>
+                </div>
+                <div>
+                    <h2 class="text-xl font-black tracking-tighter leading-none">TROPPO</h2>
+                    <p class="text-[10px] text-accent font-bold tracking-[0.3em] uppercase opacity-80 mt-1">Admin Panel
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <nav class="flex-1 py-8">
+            <a href="admin-leads.html" class="sidebar-link">
+                <span class="material-symbols-outlined">dashboard</span>
+                <span class="text-sm font-semibold">Wholesale Leads</span>
+            </a>
+            <a href="admin-inventory.html" class="sidebar-link active">
+                <span class="material-symbols-outlined">inventory_2</span>
+                <span class="text-sm font-semibold">Inventario</span>
+            </a>
+            <a href="admin-add-product.html" class="sidebar-link">
+                <span class="material-symbols-outlined">add_box</span>
+                <span class="text-sm font-semibold">Nuevo Producto</span>
+            </a>
+            <div class="pt-8 px-8 pb-4">
+                <p class="text-[10px] text-slate-500 font-bold tracking-[0.2em] uppercase">Configuración</p>
+            </div>
+            <a href="#" class="sidebar-link">
+                <span class="material-symbols-outlined">settings</span>
+                <span class="text-sm font-semibold">Ajustes del Sitio</span>
+            </a>
+        </nav>
+
+        <div class="p-8 border-t border-white/5 bg-black/10">
+            <div class="flex items-center gap-4">
+                <div
+                    class="w-10 h-10 rounded-full bg-accent flex items-center justify-center text-secondary font-black">
+                    AD</div>
+                <div>
+                    <p class="text-sm font-bold">Admin Troppo</p>
+                    <p class="text-[10px] text-slate-500">Sesión activa</p>
+                </div>
+                <button class="ml-auto text-slate-500 hover:text-white transition-colors">
+                    <span class="material-symbols-outlined">logout</span>
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 min-w-0 bg-luxury-bg">
+        <header
+            class="bg-white border-b border-slate-200 px-12 py-6 flex items-center justify-between sticky top-0 z-40">
+            <div>
+                <h1 class="text-3xl font-black text-secondary uppercase tracking-tighter">Inventario de Stock</h1>
+                <p class="text-xs text-slate-400 mt-1 italic font-sans font-medium">Control centralizado de variedades y
+                    disponibilidad.</p>
+            </div>
+            <div class="flex gap-4">
+                <button
+                    class="flex items-center gap-2 px-6 py-2.5 bg-white border-2 border-slate-100 rounded-none text-secondary font-bold text-xs uppercase tracking-widest hover:border-accent transition-all">
+                    <span class="material-symbols-outlined text-sm">download</span>
+                    Exportar CSV
+                </button>
+                <a href="admin-add-product.html"
+                    class="flex items-center gap-2 px-6 py-2.5 bg-primary text-white rounded-none font-bold text-xs uppercase tracking-widest hover:bg-secondary transition-all shadow-xl shadow-primary/20">
+                    <span class="material-symbols-outlined text-sm">add</span>
+                    Nuevo Producto
+                </a>
+            </div>
+        </header>
+
+        <div class="p-12">
+            <!-- Stats -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div class="bg-white p-8 rounded-none border-l-4 border-accent shadow-sm">
+                    <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-2">Variedades Totales
+                    </p>
+                    <h3 class="text-3xl font-black text-secondary">24</h3>
+                    <p class="text-[10px] text-slate-400 mt-2 font-medium italic">En catálogo activo</p>
+                </div>
+                <div class="bg-white p-8 rounded-none border-l-4 border-amber-500 shadow-sm">
+                    <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-2">Stock Bajo</p>
+                    <h3 class="text-3xl font-black text-secondary">8</h3>
+                    <p class="text-[10px] text-amber-600 font-bold mt-2">Reponer pronto</p>
+                </div>
+                <div class="bg-white p-8 rounded-none border-l-4 border-italianRed shadow-sm">
+                    <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-2">Sin Stock</p>
+                    <h3 class="text-3xl font-black text-secondary">2</h3>
+                    <p class="text-[10px] text-italianRed font-bold mt-2 italic">Agotados</p>
+                </div>
+                <div class="bg-white p-8 rounded-none border-l-4 border-italianGreen shadow-sm">
+                    <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-2">Puntos de Venta</p>
+                    <h3 class="text-3xl font-black text-secondary">12</h3>
+                    <p class="text-[10px] text-italianGreen font-bold mt-2 italic flex items-center gap-1">
+                        <span class="material-symbols-outlined text-xs">location_on</span> Red activa
+                    </p>
+                </div>
+            </div>
+
+            <!-- Table -->
+            <div class="bg-white rounded-none shadow-sm border border-slate-100 overflow-hidden">
+                <div class="p-6 border-b border-slate-50 flex items-center justify-between bg-slate-50/30">
+                    <div class="relative w-96">
+                        <span
+                            class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+                        <input type="text" placeholder="Buscar pizzas, ingredientes o lotes..."
+                            class="w-full pl-12 pr-4 py-3 bg-white border-slate-200 text-xs rounded-none focus:ring-accent focus:border-accent">
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left premium-table">
+                        <thead>
+                            <tr>
+                                <th>Imagen</th>
+                                <th>Producto</th>
+                                <th>Categoría</th>
+                                <th>Precio</th>
+                                <th>Estado Stock</th>
+                                <th class="text-right">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-xs">
+                            <tr>
+                                <td class="w-24">
+                                    <img alt="Margherita" class="w-16 h-12 object-cover border border-slate-100"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAV6ht5-7EqjqBLbBbe4IqAMJcSzlq44_HitnVqtA1x0SspT1sL-u9rtE3Vkz-k1iLO04veg2NPgL647bFYbxggj_FIv24XrIl57Uz8BgzooZwYfGHsPTSBLtDlERFnRf5-z1EDGOXF8CIKqf08Cgl_tGMpkao7c7wiGUTyFh2zf-DGDZmh_jkBsBr4HFp99bTCghRgTLp4uE0laTT2tC3ZcFn_tpsMeLf43Z4bhGVaJ0N_npycLjp5jVuaifYGYBrB614o_XGCLTg" />
+                                </td>
+                                <td>
+                                    <p class="font-bold text-secondary">Margherita Napoletana</p>
+                                    <p class="text-[10px] text-slate-400 mt-1 uppercase tracking-widest">SKU:
+                                        TR-MARG-001</p>
+                                </td>
+                                <td>
+                                    <span
+                                        class="text-[10px] font-bold uppercase tracking-widest text-slate-400 border border-slate-100 px-2 py-0.5">Tradicional</span>
+                                </td>
+                                <td class="font-bold text-secondary">$4.500</td>
+                                <td class="w-64">
+                                    <div class="flex items-center gap-4">
+                                        <div class="flex-1 h-1.5 bg-slate-100 rounded-none overflow-hidden">
+                                            <div class="h-full bg-italianGreen w-[85%]"></div>
+                                        </div>
+                                        <span class="status-badge status-instock">85 U.</span>
+                                    </div>
+                                </td>
+                                <td class="text-right">
+                                    <div class="flex justify-end gap-2">
+                                        <button class="text-slate-400 hover:text-primary transition-colors">
+                                            <span class="material-symbols-outlined text-lg">edit</span>
+                                        </button>
+                                        <button class="text-slate-400 hover:text-italianRed transition-colors">
+                                            <span class="material-symbols-outlined text-lg">delete</span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="w-24">
+                                    <img alt="Diavola" class="w-16 h-12 object-cover border border-slate-100"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuA41DAldGdzA3hxeHydkUhja92CzdOjETiJuBuLfDQ2LXBHgrt8K43NBfX6yY5z5jEwoMNsWlVXUBQPmr7JV5rUiIDZwQLhPXEE_8FhrStaKxITBC1F5J5nc_BsOK4u5IbXWe2eGcW0KysnQiTB7iQYKTomSb8L_L0mNIsk3fK7fz-xK_Bj8TfAncI6lreWnhb-b66TU2AGtyf4JYzJIOjI71VyhexYFu9ohClXR7AQxIMuNfoOSkIfPAvN-yYfb-INcHtuwE_np_U" />
+                                </td>
+                                <td>
+                                    <p class="font-bold text-secondary">Diavola Piccante</p>
+                                    <p class="text-[10px] text-slate-400 mt-1 uppercase tracking-widest">SKU:
+                                        TR-DIAV-002</p>
+                                </td>
+                                <td>
+                                    <span
+                                        class="text-[10px] font-bold uppercase tracking-widest text-slate-400 border border-slate-100 px-2 py-0.5">Picante</span>
+                                </td>
+                                <td class="font-bold text-secondary">$5.200</td>
+                                <td class="w-64">
+                                    <div class="flex items-center gap-4">
+                                        <div class="flex-1 h-1.5 bg-slate-100 rounded-none overflow-hidden">
+                                            <div class="h-full bg-amber-500 w-[12%]"></div>
+                                        </div>
+                                        <span class="status-badge status-lowstock">12 U.</span>
+                                    </div>
+                                </td>
+                                <td class="text-right">
+                                    <div class="flex justify-end gap-2">
+                                        <button class="text-slate-400 hover:text-primary transition-colors">
+                                            <span class="material-symbols-outlined text-lg">edit</span>
+                                        </button>
+                                        <button class="text-slate-400 hover:text-italianRed transition-colors">
+                                            <span class="material-symbols-outlined text-lg">delete</span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="w-24">
+                                    <img alt="Fugazzeta"
+                                        class="w-16 h-12 object-cover border border-slate-100 grayscale"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHbWk6JmBkDDn_vtAVTKXX-fE_cy6r5i71RCs08ULmExUyBCJykdYklBc4gsJt4_1GsmIF-o5T9AaCxkONbKJsQhNlouRPDuuKOpdKVOLnjQsWl4L0yzKCvTKKPW-H-08S2VCuVMi2-aNH9X4iVsarjulga1TwNuzt7JPbk6PVS7hT9EGHhBByXmtksG5xWC43DW4R3rwBx0Z6ADD_q0Rl7uDr4Ve2_xFL2rZYUQABG9ZNIf9n1OsZKqJa_Zk1FuL6c8vJ2e_ShBE" />
+                                </td>
+                                <td>
+                                    <p class="font-bold text-secondary">Fugazzeta Especial</p>
+                                    <p class="text-[10px] text-slate-400 mt-1 uppercase tracking-widest">SKU:
+                                        TR-FUGA-003</p>
+                                </td>
+                                <td>
+                                    <span
+                                        class="text-[10px] font-bold uppercase tracking-widest text-slate-400 border border-slate-100 px-2 py-0.5">Tradicional</span>
+                                </td>
+                                <td class="font-bold text-secondary">$4.900</td>
+                                <td class="w-64">
+                                    <div class="flex items-center gap-4">
+                                        <div class="flex-1 h-1.5 bg-slate-100 rounded-none overflow-hidden">
+                                            <div class="h-full bg-italianRed w-[0%]"></div>
+                                        </div>
+                                        <span class="status-badge status-outofstock">Agotado</span>
+                                    </div>
+                                </td>
+                                <td class="text-right">
+                                    <div class="flex justify-end gap-2">
+                                        <button class="text-slate-400 hover:text-primary transition-colors">
+                                            <span class="material-symbols-outlined text-lg">edit</span>
+                                        </button>
+                                        <button class="text-slate-400 hover:text-italianRed transition-colors">
+                                            <span class="material-symbols-outlined text-lg">delete</span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="px-8 py-4 bg-slate-50/50 flex items-center justify-between border-t border-slate-50 mt-12">
+                    <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Mostrando 1-3 de 24
+                        productos</p>
+                    <div class="flex gap-2">
+                        <button
+                            class="w-10 h-10 border border-slate-200 flex items-center justify-center text-slate-400 hover:border-accent hover:text-accent disabled:opacity-30"
+                            disabled>
+                            <span class="material-symbols-outlined text-sm">chevron_left</span>
+                        </button>
+                        <button class="w-10 h-10 bg-secondary text-white font-bold text-xs">1</button>
+                        <button
+                            class="w-10 h-10 border border-slate-200 flex items-center justify-center text-slate-400 hover:border-accent hover:text-accent">
+                            <span class="material-symbols-outlined text-sm">chevron_right</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shop Points -->
+            <div class="mt-20">
+                <h3 class="text-2xl font-black text-secondary uppercase tracking-tighter mb-8 italic">Puntos de Venta
+                    Activos</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white p-6 border border-slate-100 shadow-sm flex items-center gap-4">
+                        <span class="material-symbols-outlined text-primary">store</span>
+                        <div>
+                            <p class="text-sm font-bold text-secondary">Troppo Pizzeria</p>
+                            <p class="text-[10px] text-slate-400 font-medium">Santa Fe, Centro</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 border border-slate-100 shadow-sm flex items-center gap-4">
+                        <span class="material-symbols-outlined text-primary">shopping_cart</span>
+                        <div>
+                            <p class="text-sm font-bold text-secondary">Super Necochea</p>
+                            <p class="text-[10px] text-slate-400 font-medium">Candioti Norte</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 border border-slate-100 shadow-sm flex items-center gap-4">
+                        <span class="material-symbols-outlined text-primary">restaurant</span>
+                        <div>
+                            <p class="text-sm font-bold text-secondary">Bowie Bar</p>
+                            <p class="text-[10px] text-slate-400 font-medium">El Pozo</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 border border-slate-100 shadow-sm flex items-center gap-4">
+                        <span class="material-symbols-outlined text-primary">bakery_dining</span>
+                        <div>
+                            <p class="text-sm font-bold text-secondary">Cioccolata Panadería</p>
+                            <p class="text-[10px] text-slate-400 font-medium">Guadalupe</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
