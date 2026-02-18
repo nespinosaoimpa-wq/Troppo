@@ -538,22 +538,30 @@
                         </li>
                     </ul>
                 </div>
-                <div class="lg:col-span-2 relative min-h-[500px] bg-slate-100 overflow-hidden" id="google-map">
-                    <!-- Google Map will render here -->
-                    <div
-                        class="absolute inset-0 flex flex-col items-center justify-center bg-slate-100 p-8 text-center">
-                        <span class="material-symbols-outlined text-4xl text-slate-300 mb-4">map</span>
-                        <p class="text-slate-400 font-display italic">Mapa en preparación</p>
-                        <p class="text-xs text-slate-400 mt-2 max-w-xs">Requiere Google Maps API Key para activación de
-                            visualización satelital precisa.</p>
+                <div class="lg:col-span-2 relative min-h-[500px] bg-slate-100 overflow-hidden">
+                    <img alt="Map Demo" id="map-img"
+                        class="w-full h-full object-cover grayscale brightness-90 transition-transform duration-1000"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDM2A2x288bI_fPGhh9VHsctSbV2pj_2WXG1oY50UwjaQIyMVxabUNPfriLWlvXLuXwGocC7l_2g1ysECI0cVFdtHVbKOwR29s3wd8ppGiotsOI_vrGJpcroTIRvU9BW8zUmap_bJ90ySSKd54BVCSf3eACu8x4vSNUHH24LYCNIq01mWytXsIfmOPD-h8d_Zx_Yg4y_yd2rOVmoBAKC4zvNZyAeJ57GV4yev4ayL4q8YoM2p-1X1vsLVURz-UlMR6Wl5klpFsAatY" />
+                    <div id="map-points-container" class="absolute inset-0">
+                        <!-- Points will be rendered here by JS -->
                     </div>
+                    <div id="map-marker" class="absolute transition-all duration-700 z-10" style="top: 43%; left: 68%;">
+                        <div class="relative">
+                            <span
+                                class="material-symbols-outlined text-primary text-5xl drop-shadow-lg">location_on</span>
+                            <div class="absolute inset-0 bg-primary/20 rounded-full animate-ping scale-150"></div>
+                        </div>
+                    </div>
+                    <!-- Future Google Map Container (Hidden) -->
+                    <div id="google-map" class="hidden absolute inset-0"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Google Maps API Script (Prepare for Key) -->
+    <!-- Google Maps API Script (Deactivated for Demo) 
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY_HERE&callback=initMap"></script>
+    -->
 
     <footer class="bg-secondary text-white pt-24 pb-12 border-t border-white/5">
         <div class="max-w-7xl mx-auto px-4">

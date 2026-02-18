@@ -74,13 +74,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Location Interactive List
     const locationItems = document.querySelectorAll('.location-item');
+    const mapMarker = document.getElementById('map-marker');
+    const mapPointsContainer = document.getElementById('map-points-container');
     window.mapMarkers = [];
 
-    // Google Maps Initialization
-    window.initMap = function () {
-        const defaultCenter = { lat: -31.6373087, lng: -60.6986888 }; // Troppo Francia
+    // --- Simulation Logic (Temporary Demo) ---
+    if (mapPointsContainer) {
+        locationItems.forEach(item => {
+            const x = item.dataset.x;
+            const y = item.dataset.y;
+            const point = document.createElement('div');
+            point.className = 'absolute w-2 h-2 bg-primary/40 rounded-full -translate-x-1/2 -translate-y-1/2 hover:scale-150 transition-transform';
+            point.style.left = `${x}%`;
+            point.style.top = `${y}%`;
+            mapPointsContainer.appendChild(point);
+        });
+    }
 
-        window.map = new google.maps.Map(document.getElementById("google-map"), {
+    function moveSimulatedMarker(item) {
+        if (!mapMarker) return;
+        const x = item.dataset.x;
+        const y = item.dataset.y;
+        mapMarker.style.left = `${x}%`;
+        mapMarker.style.top = `${y}%`;
+        mapMarker.classList.add('scale-125');
+        setTimeout(() => mapMarker.classList.remove('scale-125'), 700);
+    }
+    // -----------------------------------------
+
+    // --- Google Maps Logic (Future Activation) ---
+    window.initMap = function () {
+        const defaultCenter = { lat: -31.6373087, lng: -60.6986888 };
+        const mapContainer = document.getElementById("google-map");
+        if (!mapContainer) return;
+
+        mapContainer.classList.remove('hidden');
+        window.map = new google.maps.Map(mapContainer, {
             zoom: 13,
             center: defaultCenter,
             styles: [
@@ -94,21 +123,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const infoWindow = new google.maps.InfoWindow();
 
         locationItems.forEach((item, index) => {
-            const lat = parseFloat(item.dataset.lat);
-            const lng = parseFloat(item.dataset.lng);
-            const title = item.querySelector('p.font-bold').innerText;
-
             const marker = new google.maps.Marker({
-                position: { lat, lng },
+                position: { lat: parseFloat(item.dataset.lat), lng: parseFloat(item.dataset.lng) },
                 map: window.map,
-                title: title,
+                title: item.querySelector('p.font-bold').innerText,
                 icon: {
-                    path: google.maps.SymbolPath.CIRCLE,
-                    scale: 8,
-                    fillColor: "#D4AF37",
-                    fillOpacity: 1,
-                    strokeWeight: 2,
-                    strokeColor: "#FFFFFF"
+                    path: google.maps.SymbolPath.CIRCLE, scale: 8, fillColor: "#D4AF37", fillOpacity: 1, strokeWeight: 2, strokeColor: "#FFFFFF"
                 }
             });
 
@@ -117,14 +137,13 @@ document.addEventListener('DOMContentLoaded', () => {
             marker.addListener("click", () => {
                 window.map.panTo(marker.getPosition());
                 window.map.setZoom(16);
-                infoWindow.setContent(`<div class="p-2 pt-0"><b class="text-primary font-display">${title}</b></div>`);
+                infoWindow.setContent(`<div class="p-2 pt-0"><b class="text-primary font-display">${marker.getTitle()}</b></div>`);
                 infoWindow.open(window.map, marker);
-
-                // Highlight item in list
                 highlightLocationItem(item);
             });
         });
     };
+    // ---------------------------------------------
 
     function highlightLocationItem(item) {
         locationItems.forEach(i => i.classList.remove('bg-white/10', 'border-white/10'));
@@ -137,6 +156,9 @@ document.addEventListener('DOMContentLoaded', () => {
     locationItems.forEach((item, index) => {
         item.addEventListener('click', () => {
             highlightLocationItem(item);
+
+            // Simulation move
+            moveSimulatedMarker(item);
 
             // Pan map to marker if active
             if (window.map && window.mapMarkers[index]) {
