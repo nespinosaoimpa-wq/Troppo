@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('click', () => {
             cartNotification.classList.remove('translate-y-20', 'opacity-0');
             cartNotification.classList.add('translate-y-0', 'opacity-100');
-            
+
             setTimeout(() => {
                 cartNotification.classList.add('translate-y-20', 'opacity-0');
                 cartNotification.classList.remove('translate-y-0', 'opacity-100');
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (wholesaleForm) {
         wholesaleForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            
+
             // Simple validation check
             const name = document.getElementById('form-name').value;
             const whatsapp = document.getElementById('form-whatsapp').value;
@@ -74,36 +74,55 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Location Interactive List
     const locationItems = document.querySelectorAll('.location-item');
-    const mapImg = document.getElementById('map-img');
     const mapMarker = document.getElementById('map-marker');
+    const mapPointsContainer = document.getElementById('map-points-container');
+
+    // Render static dots for all locations
+    if (mapPointsContainer) {
+        locationItems.forEach(item => {
+            const x = item.dataset.x;
+            const y = item.dataset.y;
+            const point = document.createElement('div');
+            point.className = 'absolute w-2 h-2 bg-primary/40 rounded-full -translate-x-1/2 -translate-y-1/2 hover:scale-150 transition-transform';
+            point.style.left = `${x}%`;
+            point.style.top = `${y}%`;
+            mapPointsContainer.appendChild(point);
+        });
+    }
 
     locationItems.forEach(item => {
         item.addEventListener('click', () => {
-            // Update UI
+            // Update UI list items
             locationItems.forEach(i => i.classList.remove('bg-white/10', 'border-white/10'));
             locationItems.forEach(i => i.classList.add('border-transparent'));
-            
+
             item.classList.add('bg-white/10', 'border-white/10');
             item.classList.remove('border-transparent');
 
-            // Simulate Map Pan
-            const lat = parseFloat(item.dataset.lat);
-            const lng = parseFloat(item.dataset.lng);
-            
-            // Just a visual feedback for simulation
-            mapMarker.classList.add('scale-150', 'text-accent');
-            setTimeout(() => {
-                mapMarker.classList.remove('scale-150', 'text-accent');
-            }, 500);
+            // Move Marker
+            const x = item.dataset.x;
+            const y = item.dataset.y;
+
+            if (mapMarker) {
+                mapMarker.style.left = `${x}%`;
+                mapMarker.style.top = `${y}%`;
+
+                // Visual feedback "ping" logic already handled by CSS animation in index.html
+                // plus a manual scale boost
+                mapMarker.classList.add('scale-125');
+                setTimeout(() => {
+                    mapMarker.classList.remove('scale-125');
+                }, 700);
+            }
         });
     });
 });
 
 // Exposed Global functions
-window.resetForm = function() {
+window.resetForm = function () {
     const wholesaleForm = document.getElementById('wholesale-form');
     const formSuccess = document.getElementById('form-success');
-    
+
     wholesaleForm.reset();
     wholesaleForm.classList.remove('hidden');
     formSuccess.classList.add('hidden');
