@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Margherita | Troppo Neapolitan Pizza</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Inter:wght@300;400;600&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="bg-background-light text-slate-800 font-sans transition-colors duration-300">
+    <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex flex-col items-center">
+                    <a href="index.html" class="flex flex-col items-center leading-none no-underline">
+                        <span class="font-display text-2xl font-black tracking-[0.2em] text-primary">TROPPO</span>
+                        <div class="flex items-center gap-2 w-full">
+                            <div class="h-[1px] bg-primary flex-grow"></div>
+                            <span class="text-[10px] font-bold tracking-[0.3em] text-primary">NAPOLETANO</span>
+                            <div class="h-[1px] bg-primary flex-grow"></div>
+                        </div>
+                    </a>
+                </div>
+                <!-- Main Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <div class="relative group">
+                        <button
+                            class="text-xs font-bold tracking-widest hover:text-primary transition flex items-center gap-1 uppercase py-4">
+                            SERVICIOS
+                            <span
+                                class="material-symbols-outlined text-sm transition-transform group-hover:rotate-180">expand_more</span>
+                        </button>
+                        <div
+                            class="absolute top-full left-1/2 -translate-x-1/2 w-48 bg-white border border-slate-100 shadow-xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100">
+                            <a href="index.html#experiencias"
+                                class="block px-6 py-3 text-[10px] font-bold tracking-widest text-slate-600 hover:text-primary hover:bg-slate-50 uppercase transition">Eventos</a>
+                            <a href="index.html#mayoristas"
+                                class="block px-6 py-3 text-[10px] font-bold tracking-widest text-slate-600 hover:text-primary hover:bg-slate-50 uppercase transition">Catering</a>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <button
+                            class="text-xs font-bold tracking-widest hover:text-primary transition flex items-center gap-1 uppercase py-4">
+                            CONGELADOS
+                            <span
+                                class="material-symbols-outlined text-sm transition-transform group-hover:rotate-180">expand_more</span>
+                        </button>
+                    </div>
+                    <a class="text-xs font-bold tracking-widest hover:text-primary transition uppercase"
+                        href="index.html#puntos-venta">UBICACIÓN</a>
+                    <a class="text-xs font-bold tracking-widest hover:text-primary transition uppercase"
+                        href="index.html#mayoristas">MAYORISTAS</a>
+                </div>
+                <button
+                    class="bg-primary text-white px-6 py-2 rounded-full text-xs font-bold hover:bg-secondary transition shadow-lg flex items-center gap-2 uppercase tracking-widest">
+                    <span class="material-symbols-outlined text-sm">shopping_cart</span>
+                    $0.00
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 py-12 md:py-24">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+            <!-- Product Image -->
+            <div class="reveal active">
+                <div class="bg-white border border-slate-200 overflow-hidden">
+                    <img alt="Pizza Margherita" class="w-full h-auto aspect-square object-cover"
+                        src="https://images.unsplash.com/photo-1574126154517-d1e0d89ef734?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" />
+                </div>
+                <div class="grid grid-cols-3 gap-4 mt-4">
+                    <div class="border border-slate-200 aspect-square bg-slate-50"></div>
+                    <div class="border border-slate-200 aspect-square bg-slate-50"></div>
+                    <div class="border border-slate-200 aspect-square bg-slate-50"></div>
+                </div>
+            </div>
+
+            <!-- Product Details -->
+            <div class="reveal active">
+                <nav class="flex mb-8 text-[10px] font-bold tracking-widest uppercase text-slate-400">
+                    <a href="index.html" class="hover:text-primary">Inicio</a>
+                    <span class="mx-2">/</span>
+                    <a href="index.html#productos" class="hover:text-primary">Congelados</a>
+                    <span class="mx-2">/</span>
+                    <span class="text-primary">Margherita</span>
+                </nav>
+
+                <h1 class="font-display text-5xl md:text-7xl font-black text-secondary mb-4 tracking-tighter">MARGHERITA
+                </h1>
+                <p class="text-2xl font-bold text-accent mb-8 tracking-widest">$12.500</p>
+
+                <div class="prose prose-slate mb-12 italic">
+                    <p class="text-lg leading-relaxed text-slate-600">
+                        La reina de las pizzas napolitanas. Un equilibrio perfecto de sabores que celebra la sencillez y
+                        la calidad de los ingredientes. Pomodoro italiano, mozzarella fior di latte, albahaca fresca y
+                        un hilo de aceite de oliva extra virgen.
+                    </p>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-4 mb-12">
+                    <div class="flex border border-slate-200 h-14">
+                        <button class="px-6 hover:bg-slate-50 transition" id="qty-minus">-</button>
+                        <input type="number" value="1"
+                            class="w-16 text-center border-none font-bold text-primary focus:ring-0" id="qty-input">
+                        <button class="px-6 hover:bg-slate-50 transition" id="qty-plus">+</button>
+                    </div>
+                    <button
+                        class="flex-grow bg-primary text-white font-bold tracking-widest uppercase text-xs h-14 hover:bg-secondary transition flex items-center justify-center gap-3 shadow-xl btn-add-cart">
+                        <span class="material-symbols-outlined text-sm">add_shopping_cart</span>
+                        Agregar al Carrito
+                    </button>
+                </div>
+
+                <!-- Features Accordion -->
+                <div class="border-y border-slate-200 divide-y divide-slate-200">
+                    <div class="py-6">
+                        <button
+                            class="w-full flex justify-between items-center text-xs font-bold tracking-widest uppercase text-secondary">
+                            L'Arte della Semplicità
+                            <span class="material-symbols-outlined">expand_more</span>
+                        </button>
+                        <div class="mt-4 text-sm text-slate-500 italic leading-relaxed space-y-4">
+                            <p><strong class="text-primary uppercase tracking-tighter">San Marzano D.O.P.:</strong>
+                                Tomates cultivados en las laderas del Vesubio, conocidos por su dulzor y baja acidez.
+                            </p>
+                            <p><strong class="text-primary uppercase tracking-tighter">Fior di Latte d'Agerola:</strong>
+                                Mozzarella fresca de tradición artesanal con una textura cremosa inigualable.</p>
+                            <p><strong class="text-primary uppercase tracking-tighter">48h Fermentación:</strong>
+                                Nuestra masa reposa dos días para lograr una ligereza y digestibilidad superior.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Related Products -->
+        <section class="mt-32">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-4xl font-bold text-primary">TI CONSIGLIAMO</h2>
+                <div class="w-12 h-1 bg-accent mx-auto mt-4"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Related 1 -->
+                <a href="#"
+                    class="group block bg-white border border-slate-100 hover:shadow-xl transition-all duration-500">
+                    <div class="aspect-square overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1593504049359-74330189a345?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Diavola"
+                            class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-display text-xl font-bold text-secondary">Diavola</h3>
+                        <p class="text-accent font-bold mt-2">$14.200</p>
+                    </div>
+                </a>
+                <!-- Related 2 -->
+                <a href="#"
+                    class="group block bg-white border border-slate-100 hover:shadow-xl transition-all duration-500">
+                    <div class="aspect-square overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="4 Formaggi"
+                            class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-display text-xl font-bold text-secondary">4 Formaggi</h3>
+                        <p class="text-accent font-bold mt-2">$15.000</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-secondary text-white pt-24 pb-12">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div class="flex flex-col items-center mb-12 leading-none">
+                <span class="font-display text-2xl font-black tracking-[0.2em] text-white uppercase">TROPPO</span>
+                <span class="text-[8px] font-bold tracking-[0.3em] text-white uppercase mt-1">NAPOLETANO</span>
+            </div>
+            <p class="text-slate-400 text-xs tracking-[0.3em] uppercase">© 2024 Troppo Napoletano. Crafted with
+                tradition.</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+        document.getElementById('qty-plus')?.addEventListener('click', () => {
+            const input = document.getElementById('qty-input');
+            input.value = parseInt(input.value) + 1;
+        });
+        document.getElementById('qty-minus')?.addEventListener('click', () => {
+            const input = document.getElementById('qty-input');
+            if (parseInt(input.value) > 1) input.value = parseInt(input.value) - 1;
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+# Environment
+.gemini/
+.agent/
+skills_repo/
+node_modules/
+.DS_Store
+Thumbs.db
+
+# Project Assets
+queue/
+*.png
+*.webp
+
+# Temporary files
+*.tmp
+*.log

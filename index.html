@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Troppo | Premium Neapolitan Pizza Experience</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Inter:wght@300;400;600&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="bg-background-light text-slate-800 font-sans transition-colors duration-300">
+    <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex flex-col items-center">
+                    <a href="#" class="flex flex-col items-center leading-none no-underline">
+                        <span class="font-display text-2xl font-black tracking-[0.2em] text-primary">TROPPO</span>
+                        <div class="flex items-center gap-2 w-full">
+                            <div class="h-[1px] bg-primary flex-grow"></div>
+                            <span class="text-[10px] font-bold tracking-[0.3em] text-primary">NAPOLETANO</span>
+                            <div class="h-[1px] bg-primary flex-grow"></div>
+                        </div>
+                    </a>
+                </div>
+                <!-- Main Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <div class="relative group">
+                        <button
+                            class="text-xs font-bold tracking-widest hover:text-primary transition flex items-center gap-1 uppercase py-4"
+                            id="menu-servicios">
+                            SERVICIOS
+                            <span
+                                class="material-symbols-outlined text-sm transition-transform group-hover:rotate-180">expand_more</span>
+                        </button>
+                        <div
+                            class="absolute top-full left-1/2 -translate-x-1/2 w-48 bg-white border border-slate-100 shadow-xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100">
+                            <a href="#experiencias"
+                                class="block px-6 py-3 text-[10px] font-bold tracking-widest text-slate-600 hover:text-primary hover:bg-slate-50 uppercase transition">Eventos</a>
+                            <a href="#mayoristas"
+                                class="block px-6 py-3 text-[10px] font-bold tracking-widest text-slate-600 hover:text-primary hover:bg-slate-50 uppercase transition">Catering</a>
+                            <a href="#experiencias"
+                                class="block px-6 py-3 text-[10px] font-bold tracking-widest text-slate-600 hover:text-primary hover:bg-slate-50 uppercase transition">Clases</a>
+                        </div>
+                    </div>
+
+                    <div class="relative group">
+                        <button
+                            class="text-xs font-bold tracking-widest hover:text-primary transition flex items-center gap-1 uppercase py-4"
+                            id="menu-congelados">
+                            CONGELADOS
+                            <span
+                                class="material-symbols-outlined text-sm transition-transform group-hover:rotate-180">expand_more</span>
+                        </button>
+                        <div
+                            class="absolute top-full left-1/2 -translate-x-1/2 w-56 bg-white border border-slate-100 shadow-xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100">
+                            <a href="product-detail.html"
+                                class="block px-6 py-3 text-[10px] font-bold tracking-widest text-slate-600 hover:text-primary hover:bg-slate-50 uppercase transition">Pizza
+                                Margherita</a>
+                            <a href="#productos"
+                                class="block px-6 py-3 text-[10px] font-bold tracking-widest text-slate-600 hover:text-primary hover:bg-slate-50 uppercase transition">Otras
+                                Variedades</a>
+                        </div>
+                    </div>
+
+                    <a class="text-xs font-bold tracking-widest hover:text-primary transition uppercase"
+                        href="#puntos-venta">UBICACIÓN</a>
+                    <a class="text-xs font-bold tracking-widest hover:text-primary transition uppercase"
+                        href="#mayoristas">MAYORISTAS</a>
+                    <button
+                        class="bg-primary text-white px-6 py-2 rounded-full text-xs font-bold hover:bg-secondary transition shadow-lg flex items-center gap-2 uppercase tracking-widest">
+                        <span class="material-symbols-outlined text-sm">shopping_cart</span>
+                        Pedir Ahora
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-primary" id="mobile-menu-toggle">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div class="hidden md:hidden fixed inset-0 z-50 bg-white" id="mobile-menu">
+            <div class="p-4 flex flex-col h-full">
+                <div class="flex justify-between items-center mb-12">
+                    <span class="font-display text-xl font-black tracking-[0.2em] text-primary">TROPPO</span>
+                    <button id="mobile-menu-close" class="text-primary">
+                        <span class="material-symbols-outlined text-3xl">close</span>
+                    </button>
+                </div>
+                <nav class="flex flex-col gap-8 items-center text-center">
+                    <a href="#experiencias"
+                        class="mobile-nav-link text-lg font-bold tracking-widest uppercase">Servicios</a>
+                    <a href="#productos"
+                        class="mobile-nav-link text-lg font-bold tracking-widest uppercase">Congelados</a>
+                    <a href="#puntos-venta"
+                        class="mobile-nav-link text-lg font-bold tracking-widest uppercase">Ubicación</a>
+                    <a href="#mayoristas"
+                        class="mobile-nav-link text-lg font-bold tracking-widest uppercase">Mayoristas</a>
+                    <button
+                        class="bg-primary text-white px-10 py-4 rounded-full text-sm font-bold shadow-xl uppercase tracking-widest mt-4">
+                        Pedir Ahora
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </nav>
+
+    <header
+        class="hero-gradient h-[90vh] flex items-center justify-center text-center text-white relative overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-24 flex shadow-2xl opacity-0 animate-fade-down"
+            style="animation-delay: 0.5s; animation-fill-mode: forwards;">
+            <div class="w-1/3 bg-[#008C45]"></div>
+            <div class="w-1/3 bg-white"></div>
+            <div class="w-1/3 bg-[#CD212A]"></div>
+        </div>
+        <div class="relative z-10 px-4 max-w-4xl mx-auto mt-20">
+            <div class="mb-4 opacity-0 animate-fade-up" style="animation-delay: 0.2s; animation-fill-mode: forwards;">
+                <span class="text-accent tracking-[0.4em] text-sm font-bold">EST. 2020</span>
+            </div>
+            <h1 class="font-display text-6xl md:text-9xl font-black mb-4 tracking-tighter leading-none opacity-0 animate-fade-up"
+                style="animation-delay: 0.4s; animation-fill-mode: forwards;">TROPPO</h1>
+            <div class="flex items-center justify-center gap-4 mb-8 opacity-0 animate-fade-up"
+                style="animation-delay: 0.6s; animation-fill-mode: forwards;">
+                <div class="h-[2px] bg-white w-12"></div>
+                <span class="font-bold tracking-[0.5em] text-xl">NAPOLETANO</span>
+                <div class="h-[2px] bg-white w-12"></div>
+            </div>
+            <p class="text-xl md:text-2xl font-light mb-12 italic opacity-0 animate-fade-up max-w-2xl mx-auto"
+                style="animation-delay: 0.8s; animation-fill-mode: forwards;">La vera pizza napoletana, en la comodidad
+                de tu casa.</p>
+            <div class="flex flex-col sm:flex-row gap-6 justify-center opacity-0 animate-fade-up"
+                style="animation-delay: 1s; animation-fill-mode: forwards;">
+                <a class="bg-white text-primary px-10 py-4 rounded-none font-bold text-sm hover:bg-slate-100 transition shadow-2xl uppercase tracking-[0.2em]"
+                    href="#productos">
+                    Llevá Troppo a tu casa
+                </a>
+                <a class="bg-transparent border border-white px-10 py-4 rounded-none font-bold text-sm hover:bg-white hover:text-primary transition uppercase tracking-[0.2em]"
+                    href="#puntos-venta">
+                    Puntos de Venta
+                </a>
+            </div>
+        </div>
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2">
+            <span class="material-symbols-outlined text-4xl animate-bounce opacity-50">keyboard_double_arrow_down</span>
+        </div>
+    </header>
+
+    <section class="py-12 bg-white border-b border-slate-100 reveal" id="shortcuts">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-8">
+                <h3 class="text-xs font-bold tracking-[0.3em] text-primary uppercase mb-2">Atajos para Clientes</h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto">
+                <a class="flex items-center justify-center gap-3 bg-primary text-white py-6 px-8 group hover:bg-secondary transition-all transform hover:-translate-y-1"
+                    href="#">
+                    <span class="material-symbols-outlined text-2xl">menu_book</span>
+                    <span class="font-bold tracking-widest uppercase text-sm">Ver Carta del Local</span>
+                    <span
+                        class="material-symbols-outlined text-xl group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                </a>
+                <a class="flex items-center justify-center gap-3 bg-italianGreen text-white py-6 px-8 group hover:opacity-90 transition-all transform hover:-translate-y-1"
+                    href="#">
+                    <span class="material-symbols-outlined text-2xl">chat</span>
+                    <span class="font-bold tracking-widest uppercase text-sm">Pedir por WhatsApp</span>
+                    <span
+                        class="material-symbols-outlined text-xl group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-4 bg-white" id="productos">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-display text-4xl md:text-5xl font-bold mb-4 text-primary">Nuestra Selección Premium</h2>
+                <div class="w-20 h-1 bg-accent mx-auto mb-6"></div>
+                <p class="text-slate-500 max-w-2xl mx-auto text-lg italic">Fieles a la tradición: fermentación lenta de
+                    48hs y cocción a la leña.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                <!-- Product 1 -->
+                <div
+                    class="group bg-white rounded-none border border-slate-100 hover:shadow-2xl transition-all duration-500 reveal">
+                    <div class="h-80 overflow-hidden relative">
+                        <img alt="Pizza Margherita"
+                            class="w-full h-full object-cover group-hover:scale-110 transition duration-700"
+                            src="https://images.unsplash.com/photo-1574126154517-d1e0d89ef734?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" />
+                        <div
+                            class="absolute top-4 left-0 bg-primary text-white text-[10px] font-bold px-4 py-2 tracking-widest">
+                            BEST SELLER</div>
+                        <div
+                            class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
+                            <a href="product-detail.html"
+                                class="bg-white text-primary p-3 rounded-full hover:bg-accent hover:text-white transition-colors">
+                                <span class="material-symbols-outlined">visibility</span>
+                            </a>
+                            <button
+                                class="bg-white text-primary p-3 rounded-full hover:bg-accent hover:text-white transition-colors">
+                                <span class="material-symbols-outlined">favorite</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-baseline mb-4">
+                            <h3 class="font-display text-2xl font-bold text-secondary">Margherita</h3>
+                            <span class="text-lg font-bold text-primary">$12.500</span>
+                        </div>
+                        <p class="text-slate-500 text-sm mb-8 leading-relaxed italic">Pomodoro italiano, mozzarella fior
+                            di latte, albahaca y aceite de oliva virgen.</p>
+                        <button
+                            class="w-full border-2 border-primary text-primary py-4 font-bold tracking-widest text-xs flex items-center justify-center gap-2 hover:bg-primary hover:text-white transition-all uppercase btn-add-cart">
+                            <span class="material-symbols-outlined text-sm">add_shopping_cart</span>
+                            Agregar al Carrito
+                        </button>
+                    </div>
+                </div>
+                <!-- Product 2 -->
+                <div class="group bg-white rounded-none border border-slate-100 hover:shadow-2xl transition-all duration-500 reveal"
+                    style="transition-delay: 0.1s;">
+                    <div class="h-80 overflow-hidden relative">
+                        <img alt="Pizza Diavola"
+                            class="w-full h-full object-cover group-hover:scale-110 transition duration-700"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCw_OmQ91PGC4GiR7K4uUoQ7Wbg5-RlxFVfH8ziJ1A-OGS80FacxMCdJwZdOphdYz4ls4W5rhr1BBQ7-mMUqdk4VIG_GRZXtDLdqEivYmcSSQGCLIAEifJCVumAjhmE20ZgEQ5FSw8VNUfknSOfxehYI4ORhtvZZ8RJ7NtEVn0dzSfJCItyJwMLfv_1btolYJ6m1g4jJpnqStlVKjDm6pb2lzGkV1qff4NThBLuKJZ4nIzxii4hFnKPkcBkXpeUt2kaMC34f3otpic" />
+                        <div
+                            class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
+                            <button
+                                class="bg-white text-primary p-3 rounded-full hover:bg-accent hover:text-white transition-colors">
+                                <span class="material-symbols-outlined">visibility</span>
+                            </button>
+                            <button
+                                class="bg-white text-primary p-3 rounded-full hover:bg-accent hover:text-white transition-colors">
+                                <span class="material-symbols-outlined">favorite</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-baseline mb-4">
+                            <h3 class="font-display text-2xl font-bold text-secondary">Diavola</h3>
+                            <span class="text-lg font-bold text-primary">$14.200</span>
+                        </div>
+                        <p class="text-slate-500 text-sm mb-8 leading-relaxed italic">Salame tipo Napoli picante,
+                            mozzarella, pomodoro y peperoncino infusionado.</p>
+                        <button
+                            class="w-full border-2 border-primary text-primary py-4 font-bold tracking-widest text-xs flex items-center justify-center gap-2 hover:bg-primary hover:text-white transition-all uppercase btn-add-cart">
+                            <span class="material-symbols-outlined text-sm">add_shopping_cart</span>
+                            Agregar al Carrito
+                        </button>
+                    </div>
+                </div>
+                <!-- Product 3 -->
+                <div class="group bg-white rounded-none border border-slate-100 hover:shadow-2xl transition-all duration-500 reveal"
+                    style="transition-delay: 0.2s;">
+                    <div class="h-80 overflow-hidden relative">
+                        <img alt="Pizza 4 Formaggi"
+                            class="w-full h-full object-cover group-hover:scale-110 transition duration-700"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3JGrI8Ur__yYgxpknXOZwaz53PC8d5jmU31lV5qy5QIQIHNNHiX88Y6LYse-XJsQls8CMnmmaf7R_Xzq1aDbBE3PO8emGdIzMpAETPfzKjXUVYcmPHfkb96MuBqjZTn_QczHOWLQ-yKXeOlM_D9TxFJ9lEqkqN4n4OIMBlGOEtY9VKOVJMly0_RXC0K0IxHqKqSCqKPr6LTk35I_0qZgs0YAp6FxgOoI0loffpAT-mfQpoLvK4HWkYv16D8z5H-EkrUmznUY3WVM" />
+                        <div
+                            class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
+                            <button
+                                class="bg-white text-primary p-3 rounded-full hover:bg-accent hover:text-white transition-colors">
+                                <span class="material-symbols-outlined">visibility</span>
+                            </button>
+                            <button
+                                class="bg-white text-primary p-3 rounded-full hover:bg-accent hover:text-white transition-colors">
+                                <span class="material-symbols-outlined">favorite</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-baseline mb-4">
+                            <h3 class="font-display text-2xl font-bold text-secondary">Quattro Formaggi</h3>
+                            <span class="text-lg font-bold text-primary">$15.000</span>
+                        </div>
+                        <p class="text-slate-500 text-sm mb-8 leading-relaxed italic">Mozzarella, gorgonzola premium,
+                            parmesano 12 meses y fontina.</p>
+                        <button
+                            class="w-full border-2 border-primary text-primary py-4 font-bold tracking-widest text-xs flex items-center justify-center gap-2 hover:bg-primary hover:text-white transition-all uppercase btn-add-cart">
+                            <span class="material-symbols-outlined text-sm">add_shopping_cart</span>
+                            Agregar al Carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-50 border-y border-slate-200" id="experiencias">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-display text-4xl font-bold mb-4 text-primary">Experiencias Troppo</h2>
+                <p class="text-slate-500 italic">Lo que dicen quienes ya nos eligieron en el local y en casa.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div
+                    class="bg-white p-10 border-t-4 border-primary shadow-sm reveal transform hover:-translate-y-2 transition-transform">
+                    <div class="flex text-accent mb-4">
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"La mejor experiencia napolitana de la ciudad. El ambiente es
+                        increíble y la pizza sale perfecta del horno."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-slate-200 rounded-full"></div>
+                        <div>
+                            <p class="font-bold text-sm">Federico M.</p>
+                            <p class="text-xs text-slate-400">Visita al Local</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-10 border-t-4 border-italianGreen shadow-sm reveal transform hover:-translate-y-2 transition-transform"
+                    style="transition-delay: 0.1s;">
+                    <div class="flex text-accent mb-4">
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"No puedo creer que sea una pizza congelada. El borde queda
+                        aireado y crujiente igual que en el bar. ¡Un 10!"</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-slate-200 rounded-full"></div>
+                        <div>
+                            <p class="font-bold text-sm">Luciana G.</p>
+                            <p class="text-xs text-slate-400">Cliente Congelados</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-10 border-t-4 border-primary shadow-sm reveal transform hover:-translate-y-2 transition-transform"
+                    style="transition-delay: 0.2s;">
+                    <div class="flex text-accent mb-4">
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"Atención de primera. Los conocimos en el local y ahora
+                        pedimos los packs de congelados para tener siempre a mano."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-slate-200 rounded-full"></div>
+                        <div>
+                            <p class="font-bold text-sm">Martín S.</p>
+                            <p class="text-xs text-slate-400">Cliente Recurrente</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-4 text-white wood-texture reveal" id="mayoristas">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-20">
+            <div class="md:w-1/2">
+                <span class="text-accent tracking-widest text-xs font-bold mb-4 block">B2B &amp; WHOLESALE</span>
+                <h2 class="font-display text-4xl md:text-6xl font-bold mb-8 leading-tight">¿Querés vender Troppo en tu
+                    comercio?</h2>
+                <p class="text-slate-300 text-lg mb-10 italic font-light leading-relaxed">
+                    Llevamos la calidad artesanal de Troppo a tu bar, minimarket o tienda gourmet. Consultá por nuestros
+                    precios mayoristas y catálogo exclusivo.
+                </p>
+                <div class="flex items-center gap-4 border-l-2 border-accent pl-6">
+                    <span class="material-symbols-outlined text-accent">verified_user</span>
+                    <p class="font-bold uppercase tracking-[0.2em] text-xs">Distribución oficial certificada</p>
+                </div>
+            </div>
+            <div class="md:w-1/2 w-full">
+                <div class="bg-white p-10 rounded-none shadow-2xl text-slate-800">
+                    <form class="space-y-6" id="wholesale-form">
+                        <div>
+                            <label class="block text-xs font-bold tracking-widest uppercase mb-2 text-primary">Nombre y
+                                Apellido</label>
+                            <input
+                                class="w-full rounded-none border-slate-200 focus:ring-primary focus:border-primary p-4"
+                                type="text" required id="form-name" />
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label
+                                    class="block text-xs font-bold tracking-widest uppercase mb-2 text-primary">Localidad</label>
+                                <input
+                                    class="w-full rounded-none border-slate-200 focus:ring-primary focus:border-primary p-4"
+                                    type="text" required id="form-location" />
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold tracking-widest uppercase mb-2 text-primary">Tipo
+                                    de Comercio</label>
+                                <select
+                                    class="w-full rounded-none border-slate-200 focus:ring-primary focus:border-primary p-4"
+                                    id="form-business">
+                                    <option>Restaurante / Bar</option>
+                                    <option>Market / Delicatesen</option>
+                                    <option>Supermercado</option>
+                                    <option>Otro</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label
+                                class="block text-xs font-bold tracking-widest uppercase mb-2 text-primary">WhatsApp</label>
+                            <input
+                                class="w-full rounded-none border-slate-200 focus:ring-primary focus:border-primary p-4"
+                                placeholder="+54 9 ..." type="tel" required id="form-whatsapp" />
+                        </div>
+                        <button
+                            class="w-full bg-primary text-white py-5 font-bold hover:bg-secondary transition shadow-xl uppercase tracking-[0.2em] text-sm transform hover:scale-[1.02]"
+                            type="submit" id="form-submit">
+                            Solicitar Información
+                        </button>
+                    </form>
+                    <div id="form-success" class="hidden text-center py-10">
+                        <span class="material-symbols-outlined text-5xl text-italianGreen mb-4">check_circle</span>
+                        <h4 class="text-xl font-bold mb-2">¡Solicitud Enviada!</h4>
+                        <p class="text-slate-500 text-sm">Nos pondremos en contacto con vos a la brevedad.</p>
+                        <button class="mt-8 text-primary font-bold uppercase tracking-widest text-xs underline"
+                            onclick="resetForm()">Volver a enviar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-4 bg-white" id="puntos-venta">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-display text-4xl font-bold mb-4 text-primary uppercase tracking-tighter">Donde
+                    encontrarnos</h2>
+                <p class="text-slate-500 italic">Casa central y tiendas asociadas en Santa Fe</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-0 shadow-2xl reveal">
+                <div class="lg:col-span-1 bg-primary text-white p-10 overflow-y-auto max-h-[600px]">
+                    <h3 class="font-bold text-xl mb-8 flex items-center gap-3 border-b border-white/20 pb-4">
+                        <span class="material-symbols-outlined text-accent">storefront</span>
+                        Nuestra Red
+                    </h3>
+                    <ul class="space-y-2" id="location-list">
+                        <li class="location-item p-4 border border-white/10 hover:bg-white/5 transition cursor-pointer bg-white/10"
+                            data-lat="-31.6441" data-lng="-60.7011">
+                            <div class="flex items-start gap-4">
+                                <span class="material-symbols-outlined text-accent mt-1">location_on</span>
+                                <div>
+                                    <p class="font-bold text-sm tracking-wide uppercase">TROPPO NAPOLETANO</p>
+                                    <p class="text-xs text-white/60">Casa Central - San Martín 1234</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="location-item p-4 border border-transparent hover:border-white/20 transition cursor-pointer"
+                            data-lat="-31.6361" data-lng="-60.6971">
+                            <div class="flex items-start gap-4">
+                                <span class="material-symbols-outlined text-accent mt-1">location_on</span>
+                                <div>
+                                    <p class="font-bold text-sm tracking-wide uppercase">Fiambrería Ilusión</p>
+                                    <p class="text-xs text-white/60">Boulevard Gálvez 1800</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="location-item p-4 border border-transparent hover:border-white/20 transition cursor-pointer"
+                            data-lat="-31.6211" data-lng="-60.7061">
+                            <div class="flex items-start gap-4">
+                                <span class="material-symbols-outlined text-accent mt-1">location_on</span>
+                                <div>
+                                    <p class="font-bold text-sm tracking-wide uppercase">Cioccolata Pastelería</p>
+                                    <p class="text-xs text-white/60">Urquiza 3100</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="location-item p-4 border border-transparent hover:border-white/20 transition cursor-pointer"
+                            data-lat="-31.5941" data-lng="-60.6781">
+                            <div class="flex items-start gap-4">
+                                <span class="material-symbols-outlined text-accent mt-1">location_on</span>
+                                <div>
+                                    <p class="font-bold text-sm tracking-wide uppercase">Autoservicio Guadalupe</p>
+                                    <p class="text-xs text-white/60">Av. Gral. Paz 7500</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="lg:col-span-2 relative min-h-[500px] bg-slate-100 overflow-hidden">
+                    <img alt="Map" id="map-img"
+                        class="w-full h-full object-cover grayscale brightness-90 transition-transform duration-1000"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDM2A2x288bI_fPGhh9VHsctSbV2pj_2WXG1oY50UwjaQIyMVxabUNPfriLWlvXLuXwGocC7l_2g1ysECI0cVFdtHVbKOwR29s3wd8ppGiotsOI_vrGJpcroTIRvU9BW8zUmap_bJ90ySSKd54BVCSf3eACu8x4vSNUHH24LYCNIq01mWytXsIfmOPD-h8d_Zx_Yg4y_yd2rOVmoBAKC4zvNZyAeJ57GV4yev4ayL4q8YoM2p-1X1vsLVURz-UlMR6Wl5klpFsAatY" />
+                    <div id="map-marker"
+                        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-500">
+                        <span class="material-symbols-outlined text-primary text-5xl">location_on</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-secondary text-white pt-24 pb-12 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
+                <div class="md:col-span-1">
+                    <div class="flex flex-col mb-8 leading-none">
+                        <span class="font-display text-2xl font-black tracking-[0.2em] text-white">TROPPO</span>
+                        <div class="flex items-center gap-2 w-full max-w-[150px]">
+                            <div class="h-[1px] bg-white flex-grow"></div>
+                            <span class="text-[8px] font-bold tracking-[0.3em] text-white">NAPOLETANO</span>
+                            <div class="h-[1px] bg-white flex-grow"></div>
+                        </div>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed italic pr-6">
+                        Herencia italo-argentina fusionando la tradición napolitana con los mejores ingredientes locales
+                        de Santa Fe.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-xs tracking-widest uppercase mb-8 text-accent">Contacto</h4>
+                    <div class="space-y-6">
+                        <a class="flex items-center gap-4 text-slate-300 hover:text-white transition group" href="#">
+                            <span class="material-symbols-outlined text-xl text-italianGreen">chat</span>
+                            <span class="text-sm">+54 342 555-0123</span>
+                        </a>
+                        <a class="flex items-center gap-4 text-slate-300 hover:text-white transition group"
+                            href="mailto:hola@troppo.com">
+                            <span class="material-symbols-outlined text-xl">mail</span>
+                            <span class="text-sm">hola@troppo.com</span>
+                        </a>
+                        <a class="flex items-center gap-4 text-slate-300 hover:text-white transition group" href="#">
+                            <span class="material-symbols-outlined text-xl">language</span>
+                            <span class="text-sm">@tropponapoletano</span>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold text-xs tracking-widest uppercase mb-8 text-accent">Información</h4>
+                    <ul class="space-y-4 text-sm text-slate-300">
+                        <li><a class="hover:text-white transition" href="#">Políticas de Envío</a></li>
+                        <li><a class="hover:text-white transition" href="#">Preguntas Frecuentes</a></li>
+                        <li><a class="hover:text-white transition" href="#">Términos y Condiciones</a></li>
+                        <li><a class="hover:text-white transition" href="#">Trabajá con nosotros</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-xs tracking-widest uppercase mb-8 text-accent">Medios de Pago</h4>
+                    <div class="flex flex-wrap gap-4 grayscale opacity-40">
+                        <img alt="Visa" class="h-6"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtXfZeJ-szEzsmgrthMhJSfEmIzgxL-A_JfnAr83KpFO_lW_8QHbpUxDiK_8MbWWyfnXBE3IWEQPAm7aavKg_XekMCdXZqJnntLPIDIIGgz7_ES7A-OyOi0EyQUyO6RRrxfYA92WEnGroZl01Vqx1vjMkWtbF1kBEGmvexESLwW0BkDyAB8yOSA660LrrT5-xrNxn6AK_v3xHWcy0buOJODJoHgXjK9Zmn3ZeOF7Sw__y4Q8aFPmiEqyfAwXrPopcb4ae4dgVZVbA" />
+                        <img alt="Mastercard" class="h-6"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1-wn5Fs3edzvUI_M7h15H56iTQUlmbMU6zcssx8FnDv4FgkWO_-rTZxV1Tj3xO3K0SH61hdxjSGEKJ-Foygx8Q08gJcsyHUOb-G5Q8bqnSzsn3OqZ30LUJHuvp6Q3iWiyvpoHRyG71TcYqoUjFyQroM3JOORTDrySxsKNbqEc3BaZh48es1Qc_VgHoOUTGCpjR8OE8M8XlGPX-ZZjAuC3JPN7jQ2czrUPePXag594YS-a4hHM6lqxgl9KAb-DCrxu2hX8qymGavo" />
+                        <img alt="Mercado Pago" class="h-6"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWWxHsiD6LFMBJx_oFB6YcsE7md5q6nrau0ewztZdrhfUUABkAdbCSuLRV7cTs_kz4caDETKz7AalotCApURGEjSvU6rsFtXksUe-JCSkBGPC6x_2JadGdGbOaM1zSn0Rj2s4lb4rV4HaMzrm-VfUc6zJ0qASe0UBWVtedQYiWJYd6spxP5AYsvj7KEjRqMSzE_EDziBLwiyghe_Ft2x1IHrrOu7bppeWUXj_IwB1aOrJg7cWCWoViieQnKPll4ceb-RLWPXU_iMQ" />
+                    </div>
+                </div>
+            </div>
+            <div class="pt-12 border-t border-white/5 text-center flex flex-col items-center gap-6">
+                <div class="flex gap-2 h-1 w-24 rounded-full overflow-hidden">
+                    <div class="w-1/3 bg-italianGreen"></div>
+                    <div class="w-1/3 bg-white"></div>
+                    <div class="w-1/3 bg-[#CD212A]"></div>
+                </div>
+                <p class="text-slate-500 text-[10px] tracking-[0.3em] uppercase">
+                    © 2024 Troppo Napoletano. Made with Passion for Pizza.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Notification -->
+    <div id="cart-notification"
+        class="fixed bottom-24 right-8 bg-primary text-white px-6 py-4 shadow-2xl transform translate-y-20 opacity-0 transition-all duration-300 z-50 flex items-center gap-3">
+        <span class="material-symbols-outlined">shopping_cart_checkout</span>
+        <span class="text-xs font-bold uppercase tracking-widest">Producto añadido</span>
+    </div>
+
+    <!-- Sticky WhatsApp -->
+    <a class="fixed bottom-8 right-8 bg-italianGreen text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 hover:-rotate-12 transition-all z-50 border-2 border-white/20"
+        href="#">
+        <span class="material-symbols-outlined text-3xl">chat</span>
+    </a>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

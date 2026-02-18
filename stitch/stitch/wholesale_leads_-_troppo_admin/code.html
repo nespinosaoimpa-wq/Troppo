@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Wholesale Leads - Troppo Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#003366",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#0f1923",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+        .status-new { @apply bg-primary/10 text-primary border border-primary/20; }
+        .status-contacted { @apply bg-amber-100 text-amber-700 border border-amber-200; }
+        .status-negotiation { @apply bg-purple-100 text-purple-700 border border-purple-200; }
+        .status-partner { @apply bg-emerald-100 text-emerald-700 border border-emerald-200; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 font-display">
+<div class="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 bg-white px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-primary">
+<div class="size-6">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_6_535)">
+<path clip-rule="evenodd" d="M47.2426 24L24 47.2426L0.757355 24L24 0.757355L47.2426 24ZM12.2426 21H35.7574L24 9.24264L12.2426 21Z" fill="currentColor" fill-rule="evenodd"></path>
+</g>
+<defs>
+<clippath id="clip0_6_535"><rect fill="white" height="48" width="48"></rect></clippath>
+</defs>
+</svg>
+</div>
+<h2 class="text-primary text-lg font-bold leading-tight tracking-[-0.015em]">Troppo Admin</h2>
+</div>
+</div>
+<div class="flex flex-1 justify-end gap-8 items-center">
+<nav class="flex items-center gap-6">
+<a class="text-slate-600 hover:text-primary text-sm font-medium transition-colors" href="#">Dashboard</a>
+<a class="text-primary text-sm font-bold border-b-2 border-primary py-1" href="#">Ventas</a>
+<a class="text-slate-600 hover:text-primary text-sm font-medium transition-colors" href="#">Inventario</a>
+<a class="text-slate-600 hover:text-primary text-sm font-medium transition-colors" href="#">Usuarios</a>
+</nav>
+<div class="flex gap-2">
+<button class="flex items-center justify-center rounded-lg h-10 bg-slate-100 text-slate-700 hover:bg-slate-200 px-3">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-10 bg-slate-100 text-slate-700 hover:bg-slate-200 px-3">
+<span class="material-symbols-outlined text-[20px]">account_circle</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border border-slate-200" data-alt="Admin profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAbBH9v8jD8pTkGcwyos8bMCb7fZYDXiFPCbLTBeMtcR110CW6Wnn1My2mV4maURQDH4ANKXvrwemnLbrfSKpcdJvEh2B1JicnrpqlSrGMD63IYMZQQPtlZW4Tq7EbAe9oaBS8lkSyDPMij2kl9QVIZl8lwGzaCnkSBzLKyDwnJTBiPUr4UR9r7WmghEnQhTWV8Vj2IHTvTGTkF5lLReRFVtf5Fz_xYqdc-07TW3Eb7TCCTwWN_jzrOdTkwGa4F4Q2oiUq0_AyW49k");'></div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 px-10 py-8 max-w-[1400px] mx-auto w-full">
+<!-- Breadcrumbs -->
+<nav class="flex items-center gap-2 mb-6 text-sm text-slate-500 font-medium">
+<a class="hover:text-primary" href="#">Admin</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<a class="hover:text-primary" href="#">Ventas</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-slate-900">Wholesale Leads</span>
+</nav>
+<!-- Page Header & Actions -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+<div>
+<h1 class="text-4xl font-black text-slate-900 tracking-tight mb-2">Wholesale Leads</h1>
+<p class="text-slate-500 text-base max-w-xl leading-relaxed">
+                            Manage and track wholesale inquiries captured from the Troppo landing page. Connect with potential business partners.
+                        </p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-lg text-slate-700 font-bold text-sm hover:bg-slate-50 transition-all shadow-sm">
+<span class="material-symbols-outlined text-[20px]">download</span>
+                            Export to CSV
+                        </button>
+<button class="flex items-center gap-2 px-5 py-2 bg-primary text-white rounded-lg font-bold text-sm hover:bg-primary/90 transition-all shadow-md shadow-primary/10">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                            Manual Entry
+                        </button>
+</div>
+</div>
+<!-- Filters & Search Bar -->
+<div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 mb-6 flex flex-wrap items-center gap-4">
+<div class="flex-1 min-w-[300px]">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-sm placeholder:text-slate-400" placeholder="Search by name, location or number..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<select class="bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-600 focus:ring-primary/20 focus:border-primary py-2 px-4">
+<option value="">Business Type</option>
+<option value="boutique">Boutique</option>
+<option value="gym">Fitness / Gym</option>
+<option value="distributor">Distributor</option>
+<option value="online">Online Store</option>
+</select>
+<select class="bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-600 focus:ring-primary/20 focus:border-primary py-2 px-4">
+<option value="">All Statuses</option>
+<option value="new">New</option>
+<option value="contacted">Contacted</option>
+<option value="negotiation">In Negotiation</option>
+<option value="partner">Partner</option>
+</select>
+<button class="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+</div>
+<!-- Data Table -->
+<div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50/50 border-b border-slate-200">
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Date</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Lead Info</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Location</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Business Type</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Status</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100">
+<!-- Row 1 -->
+<tr class="hover:bg-slate-50/80 transition-colors">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm text-slate-900 font-medium">Oct 24, 2023</div>
+<div class="text-xs text-slate-400">14:32 PM</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-9 rounded-full bg-primary/5 flex items-center justify-center text-primary font-bold text-xs">RM</div>
+<div>
+<div class="text-sm font-bold text-slate-900">Rodrigo Mendoza</div>
+<div class="text-xs text-slate-500">+52 55 1234 5678</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1.5 text-sm text-slate-600">
+<span class="material-symbols-outlined text-[16px] text-slate-400">location_on</span>
+                                            Mexico City, MX
+                                        </div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-0.5 rounded-full text-[12px] font-semibold bg-slate-100 text-slate-600 border border-slate-200">Boutique</span>
+</td>
+<td class="px-6 py-4">
+<span class="status-new px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider inline-flex items-center gap-1">
+<span class="size-1.5 rounded-full bg-primary animate-pulse"></span>
+                                            New
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-500 text-white rounded-lg text-xs font-bold hover:bg-emerald-600 transition-colors">
+<svg class="size-3.5 fill-current" viewbox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.414 0 .004 5.41.001 12.045c0 2.12.554 4.19 1.606 6.02L0 24l6.142-1.611a11.801 11.801 0 005.904 1.577h.005c6.635 0 12.046-5.411 12.049-12.047a11.82 11.82 0 00-3.488-8.498"></path></svg>
+                                                WhatsApp
+                                            </button>
+<button class="p-1.5 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-slate-50/80 transition-colors">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm text-slate-900 font-medium">Oct 23, 2023</div>
+<div class="text-xs text-slate-400">09:15 AM</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-9 rounded-full bg-primary/5 flex items-center justify-center text-primary font-bold text-xs">SD</div>
+<div>
+<div class="text-sm font-bold text-slate-900">Sofia Delgado</div>
+<div class="text-xs text-slate-500">+52 33 9876 5432</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1.5 text-sm text-slate-600">
+<span class="material-symbols-outlined text-[16px] text-slate-400">location_on</span>
+                                            Guadalajara, MX
+                                        </div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-0.5 rounded-full text-[12px] font-semibold bg-slate-100 text-slate-600 border border-slate-200">Online Store</span>
+</td>
+<td class="px-6 py-4">
+<span class="status-contacted px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider inline-flex items-center gap-1">
+                                            Contacted
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-500 text-white rounded-lg text-xs font-bold hover:bg-emerald-600 transition-colors">
+<svg class="size-3.5 fill-current" viewbox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.414 0 .004 5.41.001 12.045c0 2.12.554 4.19 1.606 6.02L0 24l6.142-1.611a11.801 11.801 0 005.904 1.577h.005c6.635 0 12.046-5.411 12.049-12.047a11.82 11.82 0 00-3.488-8.498"></path></svg>
+                                                WhatsApp
+                                            </button>
+<button class="p-1.5 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-slate-50/80 transition-colors">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm text-slate-900 font-medium">Oct 21, 2023</div>
+<div class="text-xs text-slate-400">18:02 PM</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-9 rounded-full bg-primary/5 flex items-center justify-center text-primary font-bold text-xs">CP</div>
+<div>
+<div class="text-sm font-bold text-slate-900">Carlos Perea</div>
+<div class="text-xs text-slate-500">+52 81 2233 4455</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1.5 text-sm text-slate-600">
+<span class="material-symbols-outlined text-[16px] text-slate-400">location_on</span>
+                                            Monterrey, MX
+                                        </div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-0.5 rounded-full text-[12px] font-semibold bg-slate-100 text-slate-600 border border-slate-200">Distributor</span>
+</td>
+<td class="px-6 py-4">
+<span class="status-negotiation px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider inline-flex items-center gap-1">
+                                            Negotiation
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-500 text-white rounded-lg text-xs font-bold hover:bg-emerald-600 transition-colors">
+<svg class="size-3.5 fill-current" viewbox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.414 0 .004 5.41.001 12.045c0 2.12.554 4.19 1.606 6.02L0 24l6.142-1.611a11.801 11.801 0 005.904 1.577h.005c6.635 0 12.046-5.411 12.049-12.047a11.82 11.82 0 00-3.488-8.498"></path></svg>
+                                                WhatsApp
+                                            </button>
+<button class="p-1.5 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-slate-50/80 transition-colors">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm text-slate-900 font-medium">Oct 20, 2023</div>
+<div class="text-xs text-slate-400">10:44 AM</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-9 rounded-full bg-primary/5 flex items-center justify-center text-primary font-bold text-xs">AV</div>
+<div>
+<div class="text-sm font-bold text-slate-900">Ana Valencia</div>
+<div class="text-xs text-slate-500">+52 22 4455 6677</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1.5 text-sm text-slate-600">
+<span class="material-symbols-outlined text-[16px] text-slate-400">location_on</span>
+                                            Puebla, MX
+                                        </div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-0.5 rounded-full text-[12px] font-semibold bg-slate-100 text-slate-600 border border-slate-200">Fitness / Gym</span>
+</td>
+<td class="px-6 py-4">
+<span class="status-partner px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider inline-flex items-center gap-1">
+                                            Partner
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-500 text-white rounded-lg text-xs font-bold hover:bg-emerald-600 transition-colors">
+<svg class="size-3.5 fill-current" viewbox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.414 0 .004 5.41.001 12.045c0 2.12.554 4.19 1.606 6.02L0 24l6.142-1.611a11.801 11.801 0 005.904 1.577h.005c6.635 0 12.046-5.411 12.049-12.047a11.82 11.82 0 00-3.488-8.498"></path></svg>
+                                                WhatsApp
+                                            </button>
+<button class="p-1.5 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-6 py-4 flex items-center justify-between bg-slate-50/50 border-t border-slate-200">
+<div class="text-xs text-slate-500 font-medium">
+                            Showing <span class="text-slate-900">1 to 4</span> of <span class="text-slate-900">124</span> leads
+                        </div>
+<div class="flex items-center gap-1">
+<button class="size-8 rounded-lg flex items-center justify-center border border-slate-200 bg-white text-slate-400 hover:text-slate-600 hover:bg-slate-50 disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="size-8 rounded-lg flex items-center justify-center bg-primary text-white text-xs font-bold">1</button>
+<button class="size-8 rounded-lg flex items-center justify-center border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 text-xs font-bold transition-colors">2</button>
+<button class="size-8 rounded-lg flex items-center justify-center border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 text-xs font-bold transition-colors">3</button>
+<span class="text-slate-400 px-1">...</span>
+<button class="size-8 rounded-lg flex items-center justify-center border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 text-xs font-bold transition-colors">32</button>
+<button class="size-8 rounded-lg flex items-center justify-center border border-slate-200 bg-white text-slate-400 hover:text-slate-600 hover:bg-slate-50 transition-colors">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Footer Summary Cards -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mt-8">
+<div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+<div class="text-slate-400 text-xs font-bold uppercase tracking-widest mb-1">Weekly Leads</div>
+<div class="flex items-end gap-3">
+<span class="text-2xl font-black text-slate-900">24</span>
+<span class="text-emerald-500 text-xs font-bold flex items-center gap-0.5 mb-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+                                +12%
+                            </span>
+</div>
+</div>
+<div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+<div class="text-slate-400 text-xs font-bold uppercase tracking-widest mb-1">Conversion Rate</div>
+<div class="flex items-end gap-3">
+<span class="text-2xl font-black text-slate-900">8.4%</span>
+<span class="text-slate-400 text-xs mb-1">avg. 30d</span>
+</div>
+</div>
+<div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+<div class="text-slate-400 text-xs font-bold uppercase tracking-widest mb-1">Pending Inquiries</div>
+<div class="flex items-end gap-3">
+<span class="text-2xl font-black text-slate-900">12</span>
+<span class="px-1.5 py-0.5 bg-rose-100 text-rose-600 text-[10px] font-bold rounded mb-1">ACTION REQ.</span>
+</div>
+</div>
+<div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+<div class="text-slate-400 text-xs font-bold uppercase tracking-widest mb-1">Active Partners</div>
+<div class="flex items-end gap-3">
+<span class="text-2xl font-black text-slate-900">432</span>
+<span class="text-primary text-xs font-bold mb-1">Total</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Margin for Layout -->
+<footer class="h-10"></footer>
+</div>
+</div>
+</body></html>
